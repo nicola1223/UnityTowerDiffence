@@ -55,17 +55,19 @@ public class Rotation : MonoBehaviour
     		lastObj = target;
     	}    	
     	transform.LookAt(target.transform.position);
-    	if (dist < ShootDist)
+    	if (Input.GetKeyDown(KeyCode.Space))
     	{
-    		Shoot(target.transform.position);
+    		Shoot();
     	}
     }
 
-    void Shoot(Vector3 targetPos)
+    void Shoot()
     {
-    	bullet.transform.position = spawn.transform.position;
-    	bullet.transform.localRotation = transform.localRotation;
-    	bullet.transform.position = Vector3.MoveTowards(bullet.transform.position, targetPos, Time.deltaTime * speed);
+        GameObject bullet1 = Instantiate(bullet, spawn.transform.position, Quaternion.identity);
+        bullet1.SetActive(true);
+//    	bullet1.transform.position = spawn.transform.position;
+    	bullet1.transform.localRotation = transform.localRotation;
+    	bullet1.GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
     }
 
     IEnumerator UpdateArr()

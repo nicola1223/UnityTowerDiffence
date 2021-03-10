@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 877159155}
   - component: {fileID: 877159154}
   - component: {fileID: 877159159}
+  - component: {fileID: 877159160}
   m_Layer: 0
   m_Name: Cube
   m_TagString: object
@@ -613,8 +614,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92111aef81cd710468a5f85e509c023f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PathType: 0
+  movementDirection: 1
+  moveTo: 0
+  PathElements:
+  - {fileID: 1199039049}
+  - {fileID: 693119172}
+  - {fileID: 646907407}
+  - {fileID: 601928260}
+  - {fileID: 1006607281}
+  - {fileID: 152831806}
   Type: 0
-  MyPath: {fileID: 639132715}
   speed: 10
   maxDistance: 0.1
 --- !u!65 &877159155
@@ -707,6 +717,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &877159160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877159153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a477156784dc4f24f85bcd4994f4380d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +909,7 @@ GameObject:
   - component: {fileID: 2050633264}
   - component: {fileID: 2050633268}
   - component: {fileID: 2050633269}
+  - component: {fileID: 2050633270}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: object
@@ -980,8 +1003,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92111aef81cd710468a5f85e509c023f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PathType: 0
+  movementDirection: 1
+  moveTo: 0
+  PathElements:
+  - {fileID: 1199039049}
+  - {fileID: 693119172}
+  - {fileID: 646907407}
+  - {fileID: 601928260}
+  - {fileID: 1006607281}
+  - {fileID: 152831806}
   Type: 0
-  MyPath: {fileID: 639132715}
   speed: 5
   maxDistance: 0.1
 --- !u!54 &2050633269
@@ -1000,6 +1032,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2050633270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050633263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a477156784dc4f24f85bcd4994f4380d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1289134900434167259
 PrefabInstance:
   m_ObjectHideFlags: 0

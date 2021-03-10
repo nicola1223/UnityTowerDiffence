@@ -10,9 +10,20 @@ public class FollowPath : MonoBehaviour
 		Lerping
 	}
 
+	public enum PathTypes
+	{
+		linear,
+		loop
+	}
+
+	public PathTypes PathType;
+	public int movementDirection = 1;
+	public int moveTo = 0;
+	public Transform[] PathElements;
+
 	public MovementType Type = MovementType.Moveing;
-	public MovingPath MyPath;
-	public float speed = 1;
+//	public MovingPath MyPath;
+	public float speed = 10;
 	public float maxDistance = .1f;
 
 	private IEnumerator<Transform> pointInPath;
@@ -20,12 +31,8 @@ public class FollowPath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (MyPath == null)
-        {
-        	return;
-        }
 
-        pointInPath = MyPath.GetNextPathPoint();
+        pointInPath = GetNextPathPoint();
 
         pointInPath.MoveNext();
 
@@ -72,4 +79,67 @@ public class FollowPath : MonoBehaviour
 			pointInPath.MoveNext();
 		}
     }
+
+    public IEnumerator<Transform> GetNextPathPoint()
+	{
+		if (PathElements == null || PathElements.Length < 1)
+		{
+			yield break;
+		}
+
+		while (true) 
+		{
+			yield return PathElements[moveTo];
+
+			if (PathElements.Length == 1)
+			{
+				continue;
+			}
+
+			if (PathType == PathTypes.linear)
+			{
+				if (moveTo <= 0)
+				{
+					movementDirection = 1;
+				}
+				else if (moveTo >= PathElements.Length - 1)
+				{
+					movementDirection = -1;
+				}
+			}
+
+			moveTo += movementDirection;
+
+			if (PathType == PathTypes.loop)
+			{
+				if (moveTo >= PathElements.Length)
+				{
+					moveTo = 0;
+				}
+
+				if (moveTo < 0)
+				{
+					moveTo = PathElements.Length - 1;
+				}
+			}
+		}
+	}
+
+	public void OnDrawGizmos()
+	{
+		if(PathElements == null || PathElements.Length < 2)
+		{
+			return;
+		}
+	
+		for(var i = 1; i < PathElements.Length; i++)
+		{
+			Gizmos.DrawLine(PathElements [i - 1].position, PathElements [i].position);
+		}
+
+		if(PathType == PathTypes.loop)
+		{
+			Gizmos.DrawLine(PathElements[0].position, PathElements[PathElements.Length - 1].position);
+		}
+	}
 }

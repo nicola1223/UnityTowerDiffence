@@ -19,11 +19,11 @@ public class CollisionBullet : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision coll)
+    void OnTriggerEnter(Collider coll)
     {
-    	if(coll.collider.tag == "object")
-    	{
+    	//if(coll.tag == "bullet")
+    	//{
     		Debug.Log("Ты попал");
-    	}
+    	//}
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 
 public class Rotation : MonoBehaviour
 {
+    private float lasttime = 5;
+    public float cooldown = 5;
 	public GameObject[] objects;
 	private float MinDist;
 	private GameObject target;
@@ -29,6 +31,7 @@ public class Rotation : MonoBehaviour
     void FixedUpdate()
     {
 
+        target = null;
     	MinDist = 0;
     	//objects.Clear();
     	//objects.AddRange(GameObject.FindGameObjectsWithTag("object"));
@@ -44,7 +47,8 @@ public class Rotation : MonoBehaviour
 
     		dist = (obj.transform.position - castle.transform.position).sqrMagnitude;
 //  		dist = Mathf.Sqrt(dist);
-    		if (dist < MinDist || MinDist == 0)
+    		var distP = (obj.transform.position - transform.position).sqrMagnitude;
+            if ((dist < MinDist || MinDist == 0) && distP <= (ShootDist * ShootDist))
     		{
     			MinDist = dist;
     			target = obj;
@@ -53,10 +57,14 @@ public class Rotation : MonoBehaviour
     	if (target != lastObj || lastObj == null)
     	{
     		lastObj = target;
-    	}    	
+    	}    
+
     	transform.LookAt(target.transform.position);
-    	if (Input.GetKeyDown(KeyCode.Space))
+        //Input.GetKeyDown(KeyCode.Space) && 
+        //(target.transform.position - transform.position).sqrMagnitude <= (ShootDist * ShootDist) &&
+    	if (Time.time - lasttime >= cooldown)
     	{
+            lasttime = Time.time;
     		Shoot();
     	}
     }

@@ -21,9 +21,10 @@ public class CollisionBullet : MonoBehaviour
 
     void OnTriggerEnter(Collider coll)
     {
-    	//if(coll.tag == "bullet")
-    	//{
+    	if(coll.tag == "object")
+    	{
     		Debug.Log("Ты попал");
-    	//}
+    		Destroy(gameObject);
+    	}
     }
 }

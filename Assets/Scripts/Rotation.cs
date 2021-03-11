@@ -5,18 +5,16 @@ using System.Linq;
 
 public class Rotation : MonoBehaviour
 {
-    private float lasttime = 5;
-    public float cooldown = 5;
+    private float lasttime = 0;
+    public float cooldown = 1;
 	public GameObject[] objects;
 	private float MinDist;
 	private GameObject target;
 	private GameObject castle;
-	public GameObject lastObj;
 	public int speed = 10;
-	private float dist;
 	private Transform spawn;
 	public GameObject bullet;
-	public int ShootDist;
+	public int ShootDist = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +23,7 @@ public class Rotation : MonoBehaviour
         bullet.transform.position = spawn.transform.position;
     	castle = GameObject.FindGameObjectsWithTag("Castle")[0];
     	StartCoroutine(UpdateArr());
+        lasttime = Time.time;
     }
 
     // Update is called once per frame
@@ -33,19 +32,17 @@ public class Rotation : MonoBehaviour
 
         target = null;
     	MinDist = 0;
+
     	//objects.Clear();
     	//objects.AddRange(GameObject.FindGameObjectsWithTag("object"));
-    	for (var i = 0; i < objects.Length; i++)
+    	
+        for (var i = 0; i < objects.Length; i++)
     	{
     		var obj = objects[i];
-    		if (obj == null)
-    		{
-    			continue;
-    		}
 
 //    		var dist = obj.transform.position - castle.transform.position;
 
-    		dist = (obj.transform.position - castle.transform.position).sqrMagnitude;
+    		var dist = (obj.transform.position - castle.transform.position).sqrMagnitude;
 //  		dist = Mathf.Sqrt(dist);
     		var distP = (obj.transform.position - transform.position).sqrMagnitude;
             if ((dist < MinDist || MinDist == 0) && distP <= (ShootDist * ShootDist))
@@ -53,16 +50,14 @@ public class Rotation : MonoBehaviour
     			MinDist = dist;
     			target = obj;
     		}
-    	}
-    	if (target != lastObj || lastObj == null)
-    	{
-    		lastObj = target;
     	}    
 
     	transform.LookAt(target.transform.position);
+
         //Input.GetKeyDown(KeyCode.Space) && 
         //(target.transform.position - transform.position).sqrMagnitude <= (ShootDist * ShootDist) &&
-    	if (Time.time - lasttime >= cooldown)
+    	
+        if (Time.time - lasttime >= cooldown)
     	{
             lasttime = Time.time;
     		Shoot();

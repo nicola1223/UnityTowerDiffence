@@ -695,7 +695,7 @@ Transform:
   m_GameObject: {fileID: 877159153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.672434, y: 8.2, z: 15.897003}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -879,10 +879,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 1
   objects: []
-  lastObj: {fileID: 0}
   speed: 100
   bullet: {fileID: 2750007833565328995}
-  ShootDist: 10
+  ShootDist: 20
 --- !u!1001 &1451231685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1041,10 +1040,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 1
   objects: []
-  lastObj: {fileID: 0}
   speed: 100
   bullet: {fileID: 2750007833565328995}
-  ShootDist: 10
+  ShootDist: 20
 --- !u!1 &2050633263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1133,7 @@ Transform:
   m_GameObject: {fileID: 2050633263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.672434, y: 8.2, z: 15.897003}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9

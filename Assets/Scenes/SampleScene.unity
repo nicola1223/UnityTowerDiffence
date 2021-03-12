@@ -812,7 +812,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d97f8cd63f420348a2cc7fed8ee833f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedM: 10
+  InvertX: 1
+  InvertY: 1
+  Invert_X_to_Y: 0
+  speedM: 20
   otstup: 50
 --- !u!1 &1006607280
 GameObject:

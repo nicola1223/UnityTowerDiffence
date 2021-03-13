@@ -29,10 +29,8 @@ public class Rotation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         target = null;
-    	MinDist = 0;
-
+        MinDist = 0;
     	//objects.Clear();
     	//objects.AddRange(GameObject.FindGameObjectsWithTag("object"));
     	
@@ -47,8 +45,8 @@ public class Rotation : MonoBehaviour
     		var distP = (obj.transform.position - transform.position).sqrMagnitude;
             if ((dist < MinDist || MinDist == 0) && distP <= (ShootDist * ShootDist))
     		{
-    			MinDist = dist;
-    			target = obj;
+                MinDist = dist;
+                target = obj; 
     		}
     	}    
 

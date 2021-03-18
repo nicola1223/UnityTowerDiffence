@@ -29,6 +29,7 @@ public class Rotation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        List<GameObject> targets = new List<GameObject>();
         target = null;
         MinDist = 0;
     	//objects.Clear();
@@ -40,22 +41,45 @@ public class Rotation : MonoBehaviour
 
 //    		var dist = obj.transform.position - castle.transform.position;
 
-    		var dist = (obj.transform.position - castle.transform.position).sqrMagnitude;
+//    		var dist = (obj.transform.position - castle.transform.position).sqrMagnitude;
 //  		dist = Mathf.Sqrt(dist);
     		var distP = (obj.transform.position - transform.position).sqrMagnitude;
-            if ((dist < MinDist || MinDist == 0) && distP <= (ShootDist * ShootDist))
-    		{
-                MinDist = dist;
-                target = obj; 
-    		}
+            if (distP <= ShootDist * ShootDist)
+            {
+                targets.Add(obj);
+            }
+//            if ((dist < MinDist || MinDist == 0) && distP <= (ShootDist * ShootDist))
+//    		{
+//                MinDist = dist;
+//                target = obj; 
+//    		}
     	}    
+        
+        foreach (var targ in targets)
+        {
+            var dist = (targ.transform.position - castle.transform.position).sqrMagnitude;
+            if (dist < MinDist || MinDist == 0)
+            {
+                MinDist = dist;
+                target = targ; 
+            }    
+        }
 
-    	transform.LookAt(target.transform.position);
+        try 
+        {
+            transform.LookAt(target.transform.position);
+        } catch (System.Exception e) 
+        {
+            
+        } finally 
+        {
+            
+        }
 
         //Input.GetKeyDown(KeyCode.Space) && 
         //(target.transform.position - transform.position).sqrMagnitude <= (ShootDist * ShootDist) &&
     	
-        if (Time.time - lasttime >= cooldown)
+        if (Time.time - lasttime >= cooldown && target != null)
     	{
             lasttime = Time.time;
     		Shoot();

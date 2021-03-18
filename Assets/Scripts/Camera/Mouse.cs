@@ -39,7 +39,7 @@ public class Mouse : MonoBehaviour
 
         if ((Input.mousePosition.x > Screen.width - otstup) && (Input.mousePosition.x <= Screen.width))
         {
-        	var speed = speedM / scale(0, otstup, 0, 5, (Screen.width - Input.mousePosition.x));
+        	var speed = speedM / scale(0, otstup, 1, 5, (Screen.width - Input.mousePosition.x));
         	if (Invert_X_to_Y)
         	{
         		transform.Translate(Vector3.forward * yinv * speed * Time.fixedDeltaTime, Space.World);
@@ -51,7 +51,7 @@ public class Mouse : MonoBehaviour
         }
         else if ((Input.mousePosition.x < otstup) && (Input.mousePosition.x >= 0))
         {
-        	var speed = speedM / scale(0, otstup, 0, 5, Input.mousePosition.x);
+        	var speed = speedM / scale(0, otstup, 1, 5, Input.mousePosition.x);
         	if (Invert_X_to_Y)
         	{
         		transform.Translate(Vector3.back * speed * yinv * Time.fixedDeltaTime, Space.World);
@@ -64,7 +64,7 @@ public class Mouse : MonoBehaviour
 
         if ((Input.mousePosition.y > Screen.height - otstup) && (Input.mousePosition.y <= Screen.height))
         {
-        	var speed = speedM / scale(0, otstup, 0, 5, (Screen.height - Input.mousePosition.y));
+        	var speed = speedM / scale(0, otstup, 1, 5, (Screen.height - Input.mousePosition.y));
         	if (Invert_X_to_Y)
         	{
         		transform.Translate(Vector3.right * xinv * speed * Time.fixedDeltaTime, Space.World);
@@ -76,7 +76,7 @@ public class Mouse : MonoBehaviour
         }
         else if ((Input.mousePosition.y < otstup) && (Input.mousePosition.y >= 0))
         {
-        	var speed = speedM / scale(0, otstup, 0, 5, Input.mousePosition.y);
+        	var speed = speedM / scale(0, otstup, 1, 5, Input.mousePosition.y);
         	if (Invert_X_to_Y)
         	{
         		transform.Translate(Vector3.left * xinv * speed * Time.fixedDeltaTime, Space.World);

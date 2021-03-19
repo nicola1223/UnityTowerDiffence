@@ -23,7 +23,7 @@ public class CollisionBullet : MonoBehaviour
     {
     	if(coll.tag == "object")
     	{
-    		Debug.Log("Ты попал");
+    		//Debug.Log("Ты попал");
     		Destroy(gameObject);
     	}
     }

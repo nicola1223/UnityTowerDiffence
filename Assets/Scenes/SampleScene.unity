@@ -166,9 +166,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 223974227}
+  - component: {fileID: 223974228}
+  - component: {fileID: 223974229}
   m_Layer: 0
   m_Name: Tower1
-  m_TagString: Untagged
+  m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,6 +191,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &223974228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223974226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e0f0df9a680ec4990c3a578b4e6e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theta_scale: 0.05
+  radius: 20
+--- !u!65 &223974229
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223974226}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.35, y: 6, z: 4.35}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &371876051
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,32 +312,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &468958149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3250650044069442863, guid: 690051e5ddd79234d8e0ed0849e44ce0,
-    type: 3}
-  m_PrefabInstance: {fileID: 6828848537146596296}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &468958150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2762800396445265813, guid: 690051e5ddd79234d8e0ed0849e44ce0,
     type: 3}
   m_PrefabInstance: {fileID: 6828848537146596296}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &468958151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468958149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e0f0df9a680ec4990c3a578b4e6e95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theta_scale: 0.005
-  radius: 20
 --- !u!1 &601928259
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,9 +959,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1292492559}
+  - component: {fileID: 1292492560}
+  - component: {fileID: 1292492561}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -973,6 +984,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1292492560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292492558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e0f0df9a680ec4990c3a578b4e6e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theta_scale: 0.05
+  radius: 20
+--- !u!65 &1292492561
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292492558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.35, y: 6, z: 4.35}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1 &1312279506 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1652574724855564655, guid: 736a13dec98fa224cafd99de13a186e6,
@@ -1169,20 +1207,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1818792622}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1898454110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898454107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e0f0df9a680ec4990c3a578b4e6e95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theta_scale: 0.05
-  radius: 20
 --- !u!1 &2050633263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,7 +1383,7 @@ PrefabInstance:
     - target: {fileID: 4359977561475533058, guid: a7131b9ec232bbe43bf9ba45076cad09,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4359977561475533058, guid: a7131b9ec232bbe43bf9ba45076cad09,
         type: 3}

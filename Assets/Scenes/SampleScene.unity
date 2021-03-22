@@ -205,6 +205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theta_scale: 0.05
   radius: 20
+  objects: []
+  triger: 0
 --- !u!65 &223974229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -888,7 +890,7 @@ MonoBehaviour:
   InvertX: 1
   InvertY: 1
   Invert_X_to_Y: 0
-  speedM: 20
+  speedM: 35
   otstup: 50
 --- !u!1 &1006607280
 GameObject:
@@ -998,6 +1000,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theta_scale: 0.05
   radius: 20
+  objects: []
+  triger: 0
 --- !u!65 &1292492561
 BoxCollider:
   m_ObjectHideFlags: 0

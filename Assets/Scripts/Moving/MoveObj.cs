@@ -14,6 +14,6 @@ public class MoveObj : MonoBehaviour
 
     void Update()
     {
-        
+    	transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z + 3));
     }
 }

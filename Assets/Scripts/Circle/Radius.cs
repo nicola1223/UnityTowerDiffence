@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Radius : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Radius : MonoBehaviour
   	public float radius = 20f;
   	LineRenderer lineRenderer;
   	private bool activated = true;
+  	public GameObject[] objects;
+  	public bool triger = false;
 
   	void Awake () {       
     	float sizeValue = (2.0f * Mathf.PI) / theta_scale; 
@@ -19,6 +22,11 @@ public class Radius : MonoBehaviour
 //    	lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
     	lineRenderer.SetWidth(0.5f, 0.5f); //thickness of line
     	lineRenderer.SetVertexCount(size);      
+  	}
+
+  	void Start()
+  	{
+  		StartCoroutine(UpdateArr());
   	}
 
   	void Update () { 
@@ -44,23 +52,42 @@ public class Radius : MonoBehaviour
     		//lineRenderer.SetActive(false);
     		lineRenderer.enabled = false;
     	}
+    	if(Input.GetMouseButtonDown(0))
+    	{
+    		if(activated && !triger)
+    		{
+    			activated = false;
+    		}
+    	}
+    	triger = false;
     	//Debug.Log(gameObject.AddComponent<LineRenderer>());
-    }
-
-    void IPointerClickHandler()
-    {
-    	Debug.Log("Yes");
     }
 
     void OnMouseDown()
     {
-    	if (activated)
+    	activated = true;
+    	foreach (var obj in objects)
     	{
-    		activated = false;
+    		if (obj != gameObject)
+    		{
+    			obj.GetComponent<Radius>().activated = false;
+    		}
     	}
-    	else
+    	triger = true;
+    }
+
+    IEnumerator UpdateArr()
+    {
+    	while (true)
     	{
-    		activated = true;
+    		if (!objects.SequenceEqual(GameObject.FindGameObjectsWithTag("tower")))
+    		{
+    			objects = GameObject.FindGameObjectsWithTag("tower");
+    		}
+    		else 
+    		{
+    			yield return null;
+    		}
     	}
     }
 }

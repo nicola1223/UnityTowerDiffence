@@ -8,6 +8,7 @@ TagManager:
   - object
   - bullet
   - tower
+  - gun
   layers:
   - Default
   - TransparentFX

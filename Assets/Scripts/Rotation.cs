@@ -15,6 +15,7 @@ public class Rotation : MonoBehaviour
 	private Transform spawn;
 	public GameObject bullet;
 	public int ShootDist = 20;
+    public bool shooted = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,61 +30,64 @@ public class Rotation : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        List<GameObject> targets = new List<GameObject>();
-        target = null;
-        MinDist = 0;
-    	//objects.Clear();
-    	//objects.AddRange(GameObject.FindGameObjectsWithTag("object"));
-    	
-        for (var i = 0; i < objects.Length; i++)
-    	{
-    		var obj = objects[i];
+        if(shooted)
+        {
+            List<GameObject> targets = new List<GameObject>();
+            target = null;
+            MinDist = 0;
+        	//objects.Clear();
+        	//objects.AddRange(GameObject.FindGameObjectsWithTag("object"));
+        	
+            for (var i = 0; i < objects.Length; i++)
+        	{
+        		var obj = objects[i];
 
-//    		var dist = obj.transform.position - castle.transform.position;
+    //    		var dist = obj.transform.position - castle.transform.position;
 
-//    		var dist = (obj.transform.position - castle.transform.position).sqrMagnitude;
-//  		dist = Mathf.Sqrt(dist);
-    		var distP = (obj.transform.position - transform.position).sqrMagnitude;
-            if (distP <= ShootDist * ShootDist)
+    //    		var dist = (obj.transform.position - castle.transform.position).sqrMagnitude;
+    //  		dist = Mathf.Sqrt(dist);
+        		var distP = (obj.transform.position - transform.position).sqrMagnitude;
+                if (distP <= ShootDist * ShootDist)
+                {
+                    targets.Add(obj);
+                }
+    //            if ((dist < MinDist || MinDist == 0) && distP <= (ShootDist * ShootDist))
+    //    		{
+    //                MinDist = dist;
+    //                target = obj; 
+    //    		}
+        	}    
+            
+            foreach (var targ in targets)
             {
-                targets.Add(obj);
+                var dist = (targ.transform.position - castle.transform.position).sqrMagnitude;
+                if (dist < MinDist || MinDist == 0)
+                {
+                    MinDist = dist;
+                    target = targ; 
+                }    
             }
-//            if ((dist < MinDist || MinDist == 0) && distP <= (ShootDist * ShootDist))
-//    		{
-//                MinDist = dist;
-//                target = obj; 
-//    		}
-    	}    
-        
-        foreach (var targ in targets)
-        {
-            var dist = (targ.transform.position - castle.transform.position).sqrMagnitude;
-            if (dist < MinDist || MinDist == 0)
+
+            try 
             {
-                MinDist = dist;
-                target = targ; 
-            }    
-        }
+                transform.LookAt(target.transform.position);
+            } catch (System.Exception e) 
+            {
+                
+            } finally 
+            {
+                
+            }
 
-        try 
-        {
-            transform.LookAt(target.transform.position);
-        } catch (System.Exception e) 
-        {
-            
-        } finally 
-        {
-            
+            //Input.GetKeyDown(KeyCode.Space) && 
+            //(target.transform.position - transform.position).sqrMagnitude <= (ShootDist * ShootDist) &&
+        	
+            if (Time.time - lasttime >= cooldown && target != null)
+        	{
+                lasttime = Time.time;
+        		Shoot();
+        	}
         }
-
-        //Input.GetKeyDown(KeyCode.Space) && 
-        //(target.transform.position - transform.position).sqrMagnitude <= (ShootDist * ShootDist) &&
-    	
-        if (Time.time - lasttime >= cooldown && target != null)
-    	{
-            lasttime = Time.time;
-    		Shoot();
-    	}
     }
 
     void Shoot()

@@ -13,6 +13,10 @@ public class Radius : MonoBehaviour
   	private bool activated = true;
   	public GameObject[] objects;
   	public bool triger = false;
+  	public bool moving = false;
+    private Vector3 pos;
+    private Camera _camera;
+    Transform gun;
 
   	void Awake () {       
     	float sizeValue = (2.0f * Mathf.PI) / theta_scale; 
@@ -26,10 +30,35 @@ public class Radius : MonoBehaviour
 
   	void Start()
   	{
+  		_camera = Camera.main;
+  		foreach(Transform child in transform)
+		{
+			if(child.tag == "gun")
+			{
+				gun = child;
+			}
+		}
   		StartCoroutine(UpdateArr());
   	}
 
-  	void Update () { 
+  	void FixedUpdate () { 
+  		if (moving)
+        {
+        	gun.GetComponent<Rotation>().shooted = false;
+            RaycastHit hit;
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit))
+            {
+                pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+            }
+            transform.position = pos;
+            if(Input.GetMouseButtonDown(0))
+        	{
+        		moving = false;
+        		gun.GetComponent<Rotation>().shooted = true;	
+        	}
+        }
+
 	  	if (activated)
 	  	{
 	  		//lineRenderer.SetActive(true);
@@ -61,6 +90,13 @@ public class Radius : MonoBehaviour
     	}
     	triger = false;
     	//Debug.Log(gameObject.AddComponent<LineRenderer>());
+    }
+
+    public void Moving()
+    {
+    	GameObject tower_n = Instantiate(gameObject, new Vector3(0,0,0), Quaternion.identity);
+    	tower_n.SetActive(true);
+    	tower_n.GetComponent<Radius>().moving = true;
     }
 
     void OnMouseDown()

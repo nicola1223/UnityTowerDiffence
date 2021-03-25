@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\FollowPath.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\Main.cs" />
+     <Compile Include="Assets\Scripts\Moving\Move2.cs" />
      <Compile Include="Assets\Scripts\Moving\MoveObj.cs" />
      <Compile Include="Assets\Scripts\MovingPath.cs" />
      <Compile Include="Assets\Scripts\Rotation.cs" />

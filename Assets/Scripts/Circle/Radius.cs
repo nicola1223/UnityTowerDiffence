@@ -10,7 +10,7 @@ public class Radius : MonoBehaviour
   	int size; //Total number of points in circle
   	public float radius = 20f;
   	LineRenderer lineRenderer;
-  	private bool activated = true;
+  	private bool activated = false;
   	public GameObject[] objects;
   	public bool triger = false;
   	public bool moving = false;
@@ -44,6 +44,28 @@ public class Radius : MonoBehaviour
   	void FixedUpdate () { 
   		if (moving)
         {
+        	activated = true;
+	    	foreach (var obj in objects)
+	    	{
+	    		if (obj != gameObject)
+	    		{
+	    			obj.GetComponent<Radius>().activated = false;
+	    		}
+	    	}
+	    	triger = true;
+	        lineRenderer.enabled = true;
+		   	Vector3 pos1;
+	    	float theta = 0f;
+	    	for(int i = 0; i < size; i++)
+	    	{          
+	      		theta += (2.0f * Mathf.PI * theta_scale);         
+	      		float x = radius * Mathf.Cos(theta);
+	      		float z = radius * Mathf.Sin(theta);          
+	      		x += gameObject.transform.position.x;
+	      		z += gameObject.transform.position.z;
+	      		pos1 = new Vector3(x, 0, z);
+	      		lineRenderer.SetPosition(i, pos1);
+	      	}
         	gun.GetComponent<Rotation>().shooted = false;
             RaycastHit hit;
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -94,6 +116,7 @@ public class Radius : MonoBehaviour
 
     public void Moving()
     {
+    	activated = true;
     	GameObject tower_n = Instantiate(gameObject, new Vector3(0,0,0), Quaternion.identity);
     	tower_n.SetActive(true);
     	tower_n.GetComponent<Radius>().moving = true;

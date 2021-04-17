@@ -28,10 +28,11 @@ public class Rotation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(shooted)
         {
+            if (objects == null) return;
             List<GameObject> targets = new List<GameObject>();
             target = null;
             MinDist = 0;
@@ -96,13 +97,15 @@ public class Rotation : MonoBehaviour
         bullet1.SetActive(true);
 //    	bullet1.transform.position = spawn.transform.position;
     	bullet1.transform.localRotation = transform.localRotation;
-    	bullet1.GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
+//    	bullet1.GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
+    	bullet1.GetComponent<Rigidbody>().velocity = transform.forward * speed;
     }
 
     IEnumerator UpdateArr()
     {
     	while (true)
     	{
+            if (GameObject.FindGameObjectsWithTag("object") == null) yield return null;
     		if (!objects.SequenceEqual(GameObject.FindGameObjectsWithTag("object")))
     		{
     			objects = GameObject.FindGameObjectsWithTag("object");

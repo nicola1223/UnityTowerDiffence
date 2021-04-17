@@ -14,11 +14,13 @@ public class Radius : MonoBehaviour
   	public GameObject[] objects;
   	public bool triger = false;
   	public bool moving = false;
+  	LayerMask lm;
     private Vector3 pos;
     private Camera _camera;
     Transform gun;
 
-  	void Awake () {       
+  	void Awake () { 
+  		lm = LayerMask.GetMask("floor");      
     	float sizeValue = (2.0f * Mathf.PI) / theta_scale; 
     	size = (int)sizeValue;
     	size++;
@@ -41,7 +43,7 @@ public class Radius : MonoBehaviour
   		StartCoroutine(UpdateArr());
   	}
 
-  	void FixedUpdate () { 
+  	void Update () { 
   		if (moving)
         {
         	activated = true;
@@ -69,14 +71,15 @@ public class Radius : MonoBehaviour
         	gun.GetComponent<Rotation>().shooted = false;
             RaycastHit hit;
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit))
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity, lm))
             {
-                pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                transform.position = hit.point; //new Vector3(hit.point.x, transform.position.y, hit.point.z);
             }
-            transform.position = pos;
+            //transform.position = pos;
             if(Input.GetMouseButtonDown(0))
         	{
         		moving = false;
+        		gameObject.GetComponent<Rigidbody>().isKinematic = true;
         		gun.GetComponent<Rotation>().shooted = true;	
         	}
         }

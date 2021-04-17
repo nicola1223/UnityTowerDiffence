@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MoveObj : MonoBehaviour
 {
-	public Camera main_camera;
-
+	public LayerMask lm;
 
     void Start()
     {
@@ -14,6 +13,11 @@ public class MoveObj : MonoBehaviour
 
     void Update()
     {
-    	transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z + 3));
+    	RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if(Physics.Raycast(ray, out hit, Mathf.Infinity, lm))
+		{
+			transform.position = hit.point;
+		}
     }
 }

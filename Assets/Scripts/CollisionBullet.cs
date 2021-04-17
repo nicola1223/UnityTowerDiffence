@@ -23,6 +23,7 @@ public class CollisionBullet : MonoBehaviour
     {
     	if(coll.tag == "object")
     	{
+            coll.GetComponent<Dead_Enemy>().lifes -= 1;
     		//Debug.Log("Ты попал");
     		Destroy(gameObject);
     	}
